@@ -6,7 +6,7 @@
     <body>
         <h1>結果</h1>
         <div align="center">
-          <h2>{{"{0:.2f}%".format(persent)}}</h2>
+          <h2>{{"{0:.2f}%".format(persent*100)}}</h2>
         </div>
     </body>
 </html>
