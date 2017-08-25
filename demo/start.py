@@ -13,5 +13,5 @@ def index():
 def result():
     url = request.query.url
     persent = measure.measure(url)
-    return template('result', persent=persent)
+    return template('result', url=url, persent=persent)
 run(host='localhost', port=8080, debug=True, reloader=True)
