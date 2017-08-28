@@ -11,15 +11,7 @@ from sklearn.externals import joblib
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv("df.csv")
-train_df, test_df = train_test_split(df[["having_At_Symbol","URL_Length","URL_of_Anchor","Submitting_to_email", "Result"]], test_size = 0.2)
-
-train_df = train_df.reset_index(drop=True)
-test_df = test_df.reset_index(drop=True)
-clf = LogisticRegression(C=1, penalty='l2')
-clf.fit(train_df.drop('Result', axis=1), train_df['Result'])
-pred = clf.predict(test_df.drop('Result', axis=1))
-
+clf = joblib.load('clf.pkl')
 
 def measure(url):
     url_date = []
