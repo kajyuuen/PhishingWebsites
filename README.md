@@ -14,6 +14,10 @@ URLを与えるとそのサイトがどのくらい，フィッシングサイ�
 
 Machine Learning Repositotyの[Phishing Websites Data Set](https://archive.ics.uci.edu/ml/datasets/phishing+websites)を利用してモデルを作成しています．
 
+```
+Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+```
+
 ### アルゴリズム
 
 コメントにてアルゴリズムについて知りたいとあったので，少し書きます．
