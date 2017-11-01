@@ -1,5 +1,6 @@
 import requests
 import re
+import datetime
 import MySQLdb
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
@@ -9,8 +10,32 @@ class URL_to_list():
         self.url = url
         self.headers = {'User-Agent': 'Mozilla/5.0'}
         self.parsed_url = urlparse(url)
-        self.response = requests.get(self.url, headers=self.headers)
-        self.soup = BeautifulSoup(self.response.text, 'html.parser')
+
+        # 取得内容を保存するための辞書型変数
+        self.page_contents = {}
+        # 現在の日時を取得
+        self.now = datetime.datetime.now()
+        
+        try:
+            self.response = requests.get(self.url, headers=self.headers, timeout=30)
+            self.response.raise_for_status()
+            self.soup = BeautifulSoup(self.response.text, 'html.parser')
+            print(
+                "ページURL: {}, HTTPステータス: {}, 処理時間(秒): {}, 現在時刻: {}".format(
+                    self.url,
+                    self.response.status_code,
+                    self.response.elapsed.total_seconds(),
+                    self.now
+                    )
+            )
+            #self.page_contents[self.url] = self.response.text
+        except requests.exceptions.RequestException as e:
+            msg = "[ERROR] {exception} {now}\n".format(
+                exception=e,
+                now=self.now
+            )
+            print(msg)
+        
 
     # 1.1.1 Using the IP Address
     def using_ip_address(self):
