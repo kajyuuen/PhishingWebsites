@@ -81,24 +81,37 @@ class URL_to_list():
         return ans
 
     # 1.1.5 Redirecting using "//"
-
+    def double_slash_redirecting(self):
+        pass
 
     # 1.1.6 Adding Prefix or Suffix Separated by (-) to the Domain
-
+    def Prefix_Suffix(self):
+        pass
+    
     # 1.1.7 Sub Domain and Multi Sub Domains
-
+    def having_Sub_Domain(self):
+        pass
     # 1.1.8 HTTPS(Hyper Text Transfer Protocol with Secure Sockets Layer)
-
+    def SSLfinal_State(self):
+        pass
+    
     # 1.1.9 Domain Registration Length
-
+    def Domain_registeration_length(self):
+        pass
+    
     # 1.1.10 Favicon
+    def Favicon(self):
+        pass
 
     # 1.1.11 Using Non-Standard Port
-
+    def port(self):
+        pass
     # 1.1.12 The Existence of "HTTPS" Token in the Domain Part of the URL
-
+    def HTTPS_token(self):
+        pass
     # 1.2.1 Request URL
-    
+    def Request_URL(self):
+        pass
     # 1.2.2 URL of Anchor
     def URL_of_Anchor(self):
         cnt = 0.01
@@ -123,9 +136,12 @@ class URL_to_list():
             return -1
 
     # 1.2.3 Links in <Meta>, <Script> and <Link> tags
-
+    def Links_in_tags(self):
+        pass
     # 1.2.4 Server Form Handler (SFH)
-
+    def SFH(self):
+        pass
+    
     # 1.2.5 Submitting Information to Email
     def Submitting_to_email(self):
         cnt = 0.0
