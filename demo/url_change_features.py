@@ -44,7 +44,7 @@ class URL_to_list():
         
 
     # 1.1.1 Using the IP Address
-    def using_ip_address(self):
+    def having_IP_Address(self):
         re_addr = re.compile("((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))")
         check = re_addr.search(self.url)
         if(check != None):
@@ -53,7 +53,7 @@ class URL_to_list():
             return 1
         
     # 1.1.2 Long URL to Hide the Suspicious Part
-    def url_length(self):
+    def URL_Length(self):
         url_len = len(self.url)
         if 75 >= url_len >= 54:
             ans = 0
@@ -64,14 +64,14 @@ class URL_to_list():
         return ans
 
     # 1.1.3 Using URL Shortening Services "TinyURL"
-    def TinyURL(self):
+    def Shortining_Service(self):
         if(self.url == self.old_url):
             return 1
         elif(self.url != self.old_url):
             return -1
     
     # 1.1.4 URL's having "@" Symbol
-    def at_sign_symbol(self):
+    def having_At_Symbol(self):
         for character in self.url:
             if(character == "@"):
                 ans = -1
@@ -100,7 +100,7 @@ class URL_to_list():
     # 1.2.1 Request URL
     
     # 1.2.2 URL of Anchor
-    def url_of_anchor(self):
+    def URL_of_Anchor(self):
         cnt = 0.01
         anc_cnt = 0.0
         for link in self.soup.findAll('a', href=True):
@@ -127,7 +127,7 @@ class URL_to_list():
     # 1.2.4 Server Form Handler (SFH)
 
     # 1.2.5 Submitting Information to Email
-    def is_send_email(self):
+    def Submitting_to_email(self):
         cnt = 0.0
         anc_cnt = 0.0
         for link in self.soup.findAll('a', href=True):
@@ -140,10 +140,10 @@ class URL_to_list():
     
     def result(self):
         url_data_list = []
-        url_data_list.append(self.using_ip_address())  # 1.1.1
-        url_data_list.append(self.url_length())        # 1.1.2
-        url_data_list.append(self.TinyURL())           # 1.1.3
-        url_data_list.append(self.at_sign_symbol())    # 1.1.4
-        url_data_list.append(self.url_of_anchor())     # 1.2.2        
-        url_data_list.append(self.is_send_email())     # 1.2.5
+        url_data_list.append(self.having_IP_Address())  # 1.1.1
+        url_data_list.append(self.URL_Length())        # 1.1.2
+        url_data_list.append(self.Shortining_Service())           # 1.1.3
+        url_data_list.append(self.having_At_Symbol())    # 1.1.4
+        url_data_list.append(self.URL_of_Anchor())     # 1.2.2        
+        url_data_list.append(self.Submitting_to_email())     # 1.2.5
         return url_data_list
