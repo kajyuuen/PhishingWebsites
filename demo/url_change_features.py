@@ -1,6 +1,7 @@
 import requests
 import re
 import datetime
+from urllib.request import urlopen
 import MySQLdb
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
@@ -17,6 +18,11 @@ class URL_to_list():
         self.now = datetime.datetime.now()
         
         try:
+            # 短縮URLかチェックする
+            # 短縮URLの場合は, 本当のURLをself.urlにする
+            self.real_url = urlopen(self.url).geturl()
+            self.old_url = self.url
+            self.url = self.real_url
             self.response = requests.get(self.url, headers=self.headers, timeout=30)
             self.response.raise_for_status()
             self.soup = BeautifulSoup(self.response.text, 'html.parser')
@@ -58,7 +64,12 @@ class URL_to_list():
         return ans
 
     # 1.1.3 Using URL Shortening Services "TinyURL"
-        
+    def TinyURL(self):
+        if(self.url == self.old_url):
+            return 1
+        elif(self.url != self.old_url):
+            return -1
+    
     # 1.1.4 URL's having "@" Symbol
     def at_sign_symbol(self):
         for character in self.url:
@@ -129,8 +140,10 @@ class URL_to_list():
     
     def result(self):
         url_data_list = []
-        url_data_list.append(self.at_sign_symbol())
-        url_data_list.append(self.url_of_anchor())
-        url_data_list.append(self.url_length())
-        url_data_list.append(self.is_send_email())
+        url_data_list.append(self.using_ip_address())  # 1.1.1
+        url_data_list.append(self.url_length())        # 1.1.2
+        url_data_list.append(self.TinyURL())           # 1.1.3
+        url_data_list.append(self.at_sign_symbol())    # 1.1.4
+        url_data_list.append(self.url_of_anchor())     # 1.2.2        
+        url_data_list.append(self.is_send_email())     # 1.2.5
         return url_data_list
