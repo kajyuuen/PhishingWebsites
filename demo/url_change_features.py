@@ -44,7 +44,9 @@ class URL_to_list():
         
 
     # 1.1.1 Using the IP Address
+    #
     def having_IP_Address(self):
+        # {-1, 1}
         re_addr = re.compile("((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))")
         check = re_addr.search(self.url)
         if(check != None):
@@ -64,7 +66,9 @@ class URL_to_list():
         return ans
 
     # 1.1.3 Using URL Shortening Services "TinyURL"
+    # return があっている分からない
     def Shortining_Service(self):
+        # {1,-1}
         if(self.url == self.old_url):
             return 1
         elif(self.url != self.old_url):
@@ -82,35 +86,45 @@ class URL_to_list():
 
     # 1.1.5 Redirecting using "//"
     def double_slash_redirecting(self):
+        # {-1, 1}
         pass
 
     # 1.1.6 Adding Prefix or Suffix Separated by (-) to the Domain
     def Prefix_Suffix(self):
+        # {-1, 1}
         pass
     
     # 1.1.7 Sub Domain and Multi Sub Domains
     def having_Sub_Domain(self):
+        # {-1,0,1}
         pass
+    
     # 1.1.8 HTTPS(Hyper Text Transfer Protocol with Secure Sockets Layer)
     def SSLfinal_State(self):
+        # {-1, 1, 0}
         pass
     
     # 1.1.9 Domain Registration Length
     def Domain_registeration_length(self):
+        # {-1, 1}
         pass
     
     # 1.1.10 Favicon
     def Favicon(self):
+        # {-1, 1}
         pass
 
     # 1.1.11 Using Non-Standard Port
     def port(self):
+        # {1, -1}
         pass
     # 1.1.12 The Existence of "HTTPS" Token in the Domain Part of the URL
     def HTTPS_token(self):
+        # {-1, 1}
         pass
     # 1.2.1 Request URL
     def Request_URL(self):
+        # {-1, 1}
         pass
     # 1.2.2 URL of Anchor
     def URL_of_Anchor(self):
@@ -153,13 +167,70 @@ class URL_to_list():
             elif "mail()" in link['href']:
                 return -1
         return 1
+
+    # 1.2.6 Abnormal URL
+    def Abnormal_URL(self):
+        pass
+
+    # 1.3.1 Website Forwarding
+    def Redirect(self):
+        pass
+
+    # 1.3.2 Status Bar Customization
+    def Redirect(self):
+        pass
+
+    # 1.3.3 Disabling Right Click
+    def on_mouseover(self):
+        pass
+
+    # 1.3.4 Using Pop-up Window
+    def popUpWindow(self):
+        pass
+
+    # 1.3.5 IFrame Redirection
+    # return 1, -1 があっているか分からない
+    def Iframe(self):
+        #if (self.soup.find_all('iframe') == []):                    # iframeだけ使用
+        if (self.soup.find_all('iframe',{"frameborder":"0"}) == []):  # フレームなしで非表示
+            return 1
+        else:
+            return -1
+
+    # 1.4.1 Age of Domain
+    def age_of_domain(self):
+        pass
+
+    # 1.4.2 DNS Record
+    def DNSRecord(self):
+        pass
+
+    # 1.4.3 Website Traffic
+    def web_traffic(self):
+        pass
+
+    # 1.4.4 PageRank
+    def Page_Rank(self):
+        pass
+
+    # 1.4.5 Google Index
+    def Google_Index(self):
+        pass
+
+    # 1.4.6 Number of Links Pointing to Page
+    def Links_pointing_to_page(self):
+        pass
+
+    # 1.4.7 Statistical-Reports Based Feature
+    def Statistical_report(self):
+        pass
     
     def result(self):
         url_data_list = []
-        url_data_list.append(self.having_IP_Address())  # 1.1.1
-        url_data_list.append(self.URL_Length())        # 1.1.2
-        url_data_list.append(self.Shortining_Service())           # 1.1.3
-        url_data_list.append(self.having_At_Symbol())    # 1.1.4
-        url_data_list.append(self.URL_of_Anchor())     # 1.2.2        
+        url_data_list.append(self.having_IP_Address())       # 1.1.1
+        url_data_list.append(self.URL_Length())              # 1.1.2
+        url_data_list.append(self.Shortining_Service())      # 1.1.3
+        url_data_list.append(self.having_At_Symbol())        # 1.1.4
+        url_data_list.append(self.URL_of_Anchor())           # 1.2.2
         url_data_list.append(self.Submitting_to_email())     # 1.2.5
         return url_data_list
