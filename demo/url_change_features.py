@@ -7,6 +7,10 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
 class URL_to_list():
+    """
+    このクラスはUCI Machine Learning Repository
+    Phishing WebSites Datasetの基づいた特徴量を任意のURLから抽出する.
+    """
     def __init__(self, url):
         self.url = url
         self.headers = {'User-Agent': 'Mozilla/5.0'}
@@ -92,7 +96,13 @@ class URL_to_list():
     # 1.1.6 Adding Prefix or Suffix Separated by (-) to the Domain
     def Prefix_Suffix(self):
         # {-1, 1}
-        pass
+        for character in self.url:
+            if(character == "-"):
+                ans = -1
+                break
+            else:
+                ans = 0
+        return ans
     
     # 1.1.7 Sub Domain and Multi Sub Domains
     def having_Sub_Domain(self):
@@ -226,6 +236,9 @@ class URL_to_list():
         pass
     
     def result(self):
+        """
+        result関数は全ての特徴量をlistとして返す
+        """
         url_data_list = []
         url_data_list.append(self.having_IP_Address())       # 1.1.1
         url_data_list.append(self.URL_Length())              # 1.1.2
