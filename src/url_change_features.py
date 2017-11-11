@@ -2,7 +2,10 @@ import requests
 import re
 import datetime
 from urllib.request import urlopen
+import ssl
+import OpenSSL
 import MySQLdb
+
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
@@ -112,6 +115,7 @@ class URL_to_list():
     # 1.1.8 HTTPS(Hyper Text Transfer Protocol with Secure Sockets Layer)
     def SSLfinal_State(self):
         # {-1, 1, 0}
+        
         pass
     
     # 1.1.9 Domain Registration Length
@@ -199,7 +203,6 @@ class URL_to_list():
         pass
 
     # 1.3.5 IFrame Redirection
-    # return 1, -1 があっているか分からない
     def Iframe(self):
         #if (self.soup.find_all('iframe') == []):                    # iframeだけ使用
         if (self.soup.find_all('iframe',{"frameborder":"0"}) == []):  # フレームなしで非表示
